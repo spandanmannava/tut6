@@ -1,0 +1,46 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	</head>
+	<body>
+		<div data-role='page' class='task1'>
+			<p>Username: <input data-bind='value: username' name='username' id='username'/></p>
+			<p>Password: <input data-bind='value: password' name='password' id='password' type="password"/></p> 
+		  <p><a href="#ButtonEventPage" data-role="button" class="onSubmit" > Submit </a></p>
+		</div>
+
+		<div data-role="page" id="ButtonEventPage">
+			<div data-role="header">
+				<a data-rel="back" data-icon="home">Home</a><br>
+			</div>
+		 <div data-role="content">     
+					<p> <span id="userNameValue"></span>..!</p>
+			</div>
+		</div>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+
+
+
+	    $('.onSubmit').on('click', function (event) {
+	        var uname = document.getElementById('username');
+	      //  alert(uname.value);
+
+	        $.ajax({
+	            url: "http://localhost:62390/Service1.svc/data/" + uname.value,
+	            success: function (data) {
+	                document.getElementById("userNameValue").innerHTML = data.name;
+	            }
+	        });
+	        // event.preventDefault();
+	    });
+
+
+	
+	</script>
+	</body>
+
+
+</html>
